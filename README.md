@@ -1,4 +1,4 @@
-# go-reuseport
+# go-reuseport [![Go](https://github.com/g41797/go-reuseport/actions/workflows/go.yml/badge.svg)](https://github.com/g41797/go-reuseport/actions/workflows/go.yml)
 
 
 Fork of [go-reuseport](github.com/libp2p/go-reuseport)
