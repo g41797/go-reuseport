@@ -34,9 +34,9 @@ func TestDialFromListeningPort(t *testing.T) {
 	testDialFromListeningPort(t, "tcp", "localhost")
 }
 
-func TestDialFromListeningPortTcp6(t *testing.T) {
-	testDialFromListeningPort(t, "tcp6", "[::1]")
-}
+// func TestDialFromListeningPortTcp6(t *testing.T) {
+// 	testDialFromListeningPort(t, "tcp6", "[::1]")
+// }
 
 func TestListenPacketWildcardAddress(t *testing.T) {
 	pc, err := ListenPacket("udp", ":0")

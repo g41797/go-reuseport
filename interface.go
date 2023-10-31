@@ -24,10 +24,9 @@ import (
 	"time"
 )
 
-// Available returns whether or not SO_REUSEPORT or equivalent behaviour is
-// available in the OS.
-func Available() bool {
-	return true
+// Available returns whether or not SO_REUSEADDR and SO_REUSEPORT are available in the OS.
+func Available() (reuseaddr, reuseport bool) {
+	return available()
 }
 
 var listenConfig = net.ListenConfig{
