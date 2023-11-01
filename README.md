@@ -33,3 +33,5 @@ c, _ := reuse.Dial("tcp", "127.0.0.1:1234", "127.0.0.1:1235")
 ```
 
 **Note: cant dial self because tcp/ip stacks use 4-tuples to identify connections, and doing so would clash.**
+
+Additional helper function _*Available()*_ returns whether or not SO_REUSEADDR and SO_REUSEPORT are available in the OS. 

@@ -4,11 +4,11 @@
 //
 // For example:
 //
-//	// listen on the same port. oh yeah.
+//	// listen on the same port.
 //	l1, _ := reuse.Listen("tcp", "127.0.0.1:1234")
 //	l2, _ := reuse.Listen("tcp", "127.0.0.1:1234")
 //
-//	// dial from the same port. oh yeah.
+//	// dial from the same port.
 //	l1, _ := reuse.Listen("tcp", "127.0.0.1:1234")
 //	l2, _ := reuse.Listen("tcp", "127.0.0.1:1235")
 //	c, _ := reuse.Dial("tcp", "127.0.0.1:1234", "127.0.0.1:1235")
@@ -24,24 +24,27 @@ import (
 	"time"
 )
 
-// Available returns whether or not SO_REUSEADDR and SO_REUSEPORT are available in the OS.
-func Available() (reuseaddr, reuseport bool) {
-	return available()
-}
-
 var listenConfig = net.ListenConfig{
 	Control: Control,
 }
 
+// Available returns whether or not SO_REUSEADDR and SO_REUSEPORT are available in the OS.
+func Available() (reuseaddr, reuseport bool) {
+	if listenConfig.Control == nil {
+		return false, false
+	}
+	return available()
+}
+
 // Listen listens at the given network and address. see net.Listen
-// Returns a net.Listener created from a file discriptor for a socket
+// Returns a net.Listener created from a file descriptor for a socket
 // with SO_REUSEPORT and SO_REUSEADDR option set.
 func Listen(network, address string) (net.Listener, error) {
 	return listenConfig.Listen(context.Background(), network, address)
 }
 
 // ListenPacket listens at the given network and address. see net.ListenPacket
-// Returns a net.Listener created from a file discriptor for a socket
+// Returns a net.Listener created from a file descriptor for a socket
 // with SO_REUSEPORT and SO_REUSEADDR option set.
 func ListenPacket(network, address string) (net.PacketConn, error) {
 	return listenConfig.ListenPacket(context.Background(), network, address)
