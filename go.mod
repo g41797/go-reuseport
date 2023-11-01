@@ -1,4 +1,4 @@
-module github.com/g41797/go-reuseport
+module github.com/g41797/reuseport
 
 go 1.19
 
